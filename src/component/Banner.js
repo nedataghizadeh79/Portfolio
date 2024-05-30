@@ -7,7 +7,7 @@ export default function Banner(){
     const [isDeleting , setIsDeleting] = useState(false)
     const [text , setText] = useState("")
     const period = 2000
-    const [delta, setDelta] = useState(300 - Math.random()*100)
+    const [delta, setDelta] = useState(300 - Math.random()*50)
     const toRotate = [ "Web Developer", "Web Designer", "UI/UX Designer" ];
 
     useEffect(()=>{
@@ -35,8 +35,6 @@ export default function Banner(){
             setLoopNumber(loopNumber+1)
             setDelta(500)
         }
-
-
     }
 
     return(
@@ -52,7 +50,7 @@ export default function Banner(){
                             I graduated from Sharif university of Technology
                             <br/>
                             <br/>
-                            I love HCI, NLP, CS and Art a lot !
+                            I love HCI, NLP, CS ,and Art a lot !
                         </p>
                         <button onClick={()=>console.log("connected banner")}> Lets connect <ArrowRightCircle size={25}/> </button>
                     </Col>
