@@ -11,13 +11,32 @@ export default function Contact(){
         message: "",
     }
 
-    const handleSubmit = (e)=>{
-        e.preventDefault()
-    }
-
     const [formDetails, setFormDetails] = useState(initialDetails)
     const [buttonText, setButtonText] = useState('send')
     const [status, setStatus] = useState({})
+
+    const handleSubmit = async (e)=>{
+        e.preventDefault()
+        setButtonText("sending ...")
+        let response = await fetch("http://localhost:5000/contact",{
+            method: "POST",
+            headers:{
+                "Contact-Type" : "Application/json; charset=utf-8",
+            },
+            body: JSON.stringify(formDetails),
+        })
+        setButtonText("send")
+        let result = response.json()
+        setFormDetails(initialDetails)
+        if (result.code === 200 ){
+            setStatus({success: true, message:"successfully"})
+        }else {
+            setStatus({success: false, message:"error"})
+        }
+
+    }
+
+
 
     function onFormUpdate(category , value){
         setFormDetails((prevState)=>({...prevState, [category]:value}))
